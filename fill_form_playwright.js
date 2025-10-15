@@ -213,9 +213,16 @@ await chooseRadio('Cuando visita una tienda en línea', rand(primeraPantalla));
       // Esperar confirmación de envío: aparece texto tipo "Tu respuesta ha sido registrada."
       try {
         await page.waitForTimeout(1000);
-await page.waitForSelector('text=/Gracias por participar|Tu respuesta|registrad|enviad/i', {
+        //solo da en local 
+/* await page.waitForSelector('text=/Gracias por participar|Tu respuesta|registrad|enviad/i', {
+  timeout: SUBMIT_TIMEOUT,
+}); */
+
+//esto si da con docker file 
+await page.waitForSelector('text=/Gracias por participar|Tu respuesta|registrad|enviad|Your response|Thank you/i', {
   timeout: SUBMIT_TIMEOUT,
 });
+
         console.log('Envío confirmado (texto "Tu respuesta" detectado).');
       } catch (e) {
         // fallback: esperar unos segundos y seguir
