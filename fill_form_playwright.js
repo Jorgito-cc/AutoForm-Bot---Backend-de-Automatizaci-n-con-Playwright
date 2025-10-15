@@ -15,7 +15,7 @@ const args = process.argv.slice(2);
 const FORM_URL = args[0] || "https://docs.google.com/forms/..."; // valor por defecto
 const N_SUBMISSIONS = parseInt(args[1]) || 1; // cantidad dinámica
 
-const HEADLESS = false;         // false para ver la ejecución en pantalla
+const HEADLESS = true;         // false para ver la ejecución en pantalla
 const DELAY_MS = 1000;         // pausa entre envíos (ms)
 const SUBMIT_TIMEOUT = 15000;  // tiempo máximo para esperar el envío (ms)
 
