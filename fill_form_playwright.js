@@ -3,7 +3,7 @@
 // Ajusta N_SUBMISSIONS, HEADLESS, DELAY_MS y los arreglos de datos según necesites.
 
 //const { chromium } = require('playwright');
-import { chromium } from "playwright";
+//import { chromium } from "playwright";
 
 //const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeeCjfRO8QhykI_xXNCW8diQNoJkNj8oGVSs1C2OI3x7aXAjQ/viewform?usp=header';
 
