@@ -12,9 +12,24 @@ import { chromium } from "playwright";
 
 
 const args = process.argv.slice(2);
-const FORM_URL = args[0] || "https://docs.google.com/forms/..."; // valor por defecto
+const FORM_URL = args[0] || "https://docs.google.com/forms/d/e/1FAIpQLSeeCjfRO8QhykI_xXNCW8diQNoJkNj8oGVSs1C2OI3x7aXAjQ/viewform?usp=header"; // valor por defecto
 const N_SUBMISSIONS = parseInt(args[1]) || 1; // cantidad dinámica
 
+
+
+(async () => {
+  console.log(`🧩 Modo simulación (sin abrir Chromium)`);
+
+  // ❌ No lanzamos Chromium
+  // const browser = await chromium.launch({ headless: true });
+
+  for (let i = 0; i < N_SUBMISSIONS; i++) {
+    console.log(`Simulando envío ${i + 1} / ${N_SUBMISSIONS}`);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+  }
+
+  console.log("✅ Simulación finalizada sin usar navegador.");
+})();
 const HEADLESS = true;         // false para ver la ejecución en pantalla
 const DELAY_MS = 1000;         // pausa entre envíos (ms)
 const SUBMIT_TIMEOUT = 15000;  // tiempo máximo para esperar el envío (ms)
