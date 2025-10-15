@@ -8,7 +8,25 @@ import cors from "cors";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-app.use(cors());
+// 🧩 Configurar CORS solo para tu frontend en Netlify
+const allowedOrigins = [
+  "https://autoformia.netlify.app", // ✅ tu dominio frontend
+  "http://localhost:5173" // (opcional, para pruebas locales de React)
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("❌ CORS no permitido desde: " + origin));
+      }
+    },
+    methods: ["GET", "POST"],
+  })
+);
+
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -59,4 +77,5 @@ app.post("/cancel-bot", (req, res) => {
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`✅ Servidor iniciado en http://localhost:${PORT}`);
+  console.log(`🌐 Permitido desde: ${allowedOrigins.join(", ")}`);
 });
