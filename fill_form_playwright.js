@@ -10,28 +10,16 @@
 
 //const N_SUBMISSIONS = 150;      // número de envíos de prueba
 
+// fill_form_playwright.js — versión final 100% simulada (sin navegador ni Playwright)
+
+// 📥 Argumentos: [formUrl, cantidad]
 const args = process.argv.slice(2);
 const FORM_URL =
   args[0] ||
   "https://docs.google.com/forms/d/e/1FAIpQLSeeCjfRO8QhykI_xXNCW8diQNoJkNj8oGVSs1C2OI3x7aXAjQ/viewform?usp=header";
 const N_SUBMISSIONS = parseInt(args[1]) || 1;
 
-// Función simulada
-(async () => {
-  console.log(`🧩 Modo simulación (sin abrir Chromium)`);
-  console.log(`🔗 URL: ${FORM_URL}`);
-  console.log(`🧮 Envíos simulados: ${N_SUBMISSIONS}`);
 
-  for (let i = 1; i <= N_SUBMISSIONS; i++) {
-    console.log(`Simulando envío ${i} / ${N_SUBMISSIONS}`);
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // pausa de 1 seg
-  }
-
-  console.log("✅ Simulación finalizada correctamente (sin navegador).");
-})();
-//const HEADLESS = true;         // false para ver la ejecución en pantalla
-const DELAY_MS = 1000;         // pausa entre envíos (ms)
-const SUBMIT_TIMEOUT = 15000;  // tiempo máximo para esperar el envío (ms)
 
 // --- Datos de ejemplo / muestras para randomizar ---
 const emails = [
@@ -73,11 +61,23 @@ function pickN(arr, n){ // pick up to n distinct random values
   return out;
 }
 
-(async () => {
-  const browser = await chromium.launch({ headless: HEADLESS });
-  const context = await browser.newContext();
-  const page = await context.newPage();
 
+
+
+
+
+
+
+
+
+
+(async () => {
+ /*  const browser = await chromium.launch({ headless: HEADLESS });
+  const context = await browser.newContext();
+  const page = await context.newPage(); */
+  console.log("🧩 Modo simulación (sin abrir Chromium)");
+  console.log(`🔗 URL: ${FORM_URL}`);
+  console.log(`🧮 Envíos simulados: ${N_SUBMISSIONS}\n`);
   for (let i = 0; i < N_SUBMISSIONS; i++){
     try {
       console.log(`=== Envío ${i+1} / ${N_SUBMISSIONS} ===`);
