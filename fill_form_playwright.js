@@ -16,19 +16,17 @@ const FORM_URL = args[0] || "https://docs.google.com/forms/d/e/1FAIpQLSeeCjfRO8Q
 const N_SUBMISSIONS = parseInt(args[1]) || 1; // cantidad dinámica
 
 
-
 (async () => {
   console.log(`🧩 Modo simulación (sin abrir Chromium)`);
+  console.log(`🔗 URL: ${FORM_URL}`);
+  console.log(`🧮 Envíos simulados: ${N_SUBMISSIONS}`);
 
-  // ❌ No lanzamos Chromium
-  // const browser = await chromium.launch({ headless: true });
-
-  for (let i = 0; i < N_SUBMISSIONS; i++) {
-    console.log(`Simulando envío ${i + 1} / ${N_SUBMISSIONS}`);
+  for (let i = 1; i <= N_SUBMISSIONS; i++) {
+    console.log(`Simulando envío ${i} / ${N_SUBMISSIONS}`);
     await new Promise((resolve) => setTimeout(resolve, 1000));
   }
 
-  console.log("✅ Simulación finalizada sin usar navegador.");
+  console.log("✅ Simulación finalizada correctamente (sin navegador).");
 })();
 const HEADLESS = true;         // false para ver la ejecución en pantalla
 const DELAY_MS = 1000;         // pausa entre envíos (ms)
